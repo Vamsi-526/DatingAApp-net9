@@ -33,6 +33,7 @@ builder.Services.AddCors(options =>
                           .AllowAnyHeader());
 });
 
+
 var app = builder.Build();
 app.UseCors("AllowLocalhost");
 
@@ -41,6 +42,7 @@ if (app.Environment.IsDevelopment())
 {
     app.MapOpenApi();
 }
+app.UseRouting();
 app.UseAuthentication();
 app.UseAuthorization();
 app.UseHttpsRedirection();

@@ -10,6 +10,7 @@ using Microsoft.EntityFrameworkCore;
 using API.Interfaces;
 
 namespace API.Controllers;
+[Route("api/[controller]")]
 
 public class AccountController(DataContext context, ITokenService tokenService) : BaseApiController
 {
