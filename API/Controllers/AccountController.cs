@@ -12,13 +12,15 @@ using API.Interfaces;
 namespace API.Controllers;
 [Route("api/[controller]")]
 
-public class AccountController(DataContext context, ITokenService tokenService) : BaseApiController
+public class AccountController(DataContext context) : BaseApiController
 {
      [HttpPost("Regster")]
      public async Task <ActionResult<UserDto>> Register(RegisterDto registerDto)
      {
          if(await UserExists(registerDto.Username)) return BadRequest("UserName is Taken");
-        using var hmac = new HMACSHA512();
+
+         return Ok();
+        /*using var hmac = new HMACSHA512();
         var user= new AppUser
         {
             UserName = registerDto.Username.ToLower(),
@@ -31,7 +33,7 @@ public class AccountController(DataContext context, ITokenService tokenService) 
         {
          UserName = user.UserName,
          Token = tokenService.CreateToken(user)
-        };
+        };*/
      }
      [HttpPost("login")]
 
